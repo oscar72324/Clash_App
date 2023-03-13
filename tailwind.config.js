@@ -10,6 +10,9 @@ module.exports = {
   ],
   theme: {
     extend: {},
-  },
+    fontFamily: {
+        'beachwood': ["beachwood-variable",'sans-serif'],
+      }
+    },
   plugins: [],
 }
