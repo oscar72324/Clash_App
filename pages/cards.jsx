@@ -8,6 +8,9 @@ export async function getServerSideProps() {
     const clashApi = await fetch("https://api.clashroyale.com/v1/cards", {
       headers: {
         Authorization: `Bearer ${token}`,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       },
     });
 
