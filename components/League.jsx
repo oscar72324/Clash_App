@@ -3,19 +3,6 @@ import league from "../public/league.png"
 
 const League = ({ playerData }) => {
     const trophies = playerData.leagueStatistics;
-    // const trophiesTrue =
-    // if (trophies){
-    //     if(trophies.bestSeason){
-    //         <span className="font-semibold text-lg">{trophies.currentSeason.trophies}</span>
-    //     }else{
-    //         'N/A'
-    //     }
-    // }else{
-    //     'N/A'
-    // }
-
-
-// FIX TROPHIES BEING UNDEFINED // 
 
     return ( 
         <div className="shadow-md max-md:w-3/4 w-1/2  md:w-1/3 h-auto mx-8 flex flex-col gap-y-2 items-center justify-center">
