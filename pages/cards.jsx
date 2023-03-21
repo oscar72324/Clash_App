@@ -26,7 +26,7 @@ export async function getStaticProps(){
           <div className="flex flex-wrap gap-4 p-4 justify-center rounded-lg items-center text-center w-[1000px] bg-white ">
           {props.clashCard.items.map(card => (
             <Link className="flex flex-col h-[150px] font-bold" href={`./CardDetail/${card.id}?type=${card.iconUrls.medium}`}>
-              {card.name} <Image className="p-0 h-4/5" height="100" width="100" src={card.iconUrls.medium} alt="images of troops"/>
+              {card.name} <Image className="p-0 h-4/5 w-[100px]" height="100" width="500" src={card.iconUrls.medium} alt="images of troops"/>
             </Link>
           ))}
           </div>

@@ -13,9 +13,9 @@ const Deck = ({ playerData }) => {
             </div>
 
             <h1 className="font-bold text-3xl">Current Deck</h1>
-            <div className="flex gap-8">
+            <div className="flex gap-8 w-full justify-center flex-wrap">
             {currentDeck.map(deck => (
-                    <Image src={deck.iconUrls.medium} width="100" height="100" key={deck.id} alt="Images of Current deck"/>
+                    <Image className="w-[100px]" src={deck.iconUrls.medium} width="500" height="100" key={deck.id} alt="Images of Current deck"/>
             ))}
             </div>
         </div>

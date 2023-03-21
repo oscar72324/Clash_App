@@ -6,6 +6,9 @@ const nextConfig = {
       {
         hostname: 'api-assets.clashroyale.com',
       },
+      {
+        hostname: 'event-assets.clashroyale.com'
+      },
     ],
   },
 }

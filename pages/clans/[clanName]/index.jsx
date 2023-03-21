@@ -1,7 +1,30 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import trophy from "../../../public/trophy.png"
+import { useState } from "react";
 
-const ClanResults = ({ clanData }) => {
+
+
+const ClanResults = ({ clanData, name }) => {
+
+    const [currentPage, setCurrentPage] = useState(0)
+    const pages = clanData.items.reduce((acc, cur, i) => {
+        const pageIndex = Math.floor(i / 20);
+        if(!acc[pageIndex]) {
+            acc[pageIndex] = [];
+        }
+        acc[pageIndex].push(cur);
+        return acc;
+    }, []);
+
+    const currentPageItems = pages[currentPage] || [];
+
+    const isFirstPage = currentPage === 0;
+    const isLastPage = currentPage === pages.length - 1;
+
+    // // / // / / // //////////////////////////////////////////////////////////////
+
     const router = useRouter();
     if (router.isFallback) {
         return <div>Loading...</div>
@@ -9,23 +32,47 @@ const ClanResults = ({ clanData }) => {
     const clan = router.query.clanName
     const searchClan = clanData.items
     const clanId = searchClan.map(id => id.tag.replace('#', ''))
-    console.log(clanId)
     // router.push(`/clans/${clanId}`)
 
     return ( 
-        <div className="">
-            First page for {clan}
-            {searchClan.map(clan => (
-                <div key={clan.tag} className="flex gap-8 p-8">
-                    <p>{clan.name}</p>
-                    <p>{clan.clanScore}</p>
-                    <p>{clan.members}</p>
-                    <p>{clan.location.name}</p>
-                </div>
+        <div className="m-2 p-2 md:m-2 md:p-8 flex flex-col">
+            <h1 className="font-light text-3xl md:text-5xl text-left pb-20">Results: <span className="text-lg md:text-2xl font-semibold pl-8">"{name}"</span></h1>
+
+
+            <table className="w-full mb-8 border-gray-400">
+            <thead>
+            <tr className=" text-left text-sm md:text-lg">
+                <th className="px-4 py-2">Name</th>
+                <th className="px-4 py-2">Clan Score</th>
+                <th className="px-4 py-2">Members</th>
+                <th className="max-[350px]:hidden px-4 py-2">Location</th>
+            </tr>
+            </thead>
+            <tbody className="">
+            {currentPageItems.map((clan) => (
+                <tr className=" hover:bg-gray-200 w-full border-gray-300 border-b-2 text-sm md:text-lg" key={clan.name}> 
+                    <td className=" px-4 py-2">
+                        <Link href={`/clans/${clan.name}/members/${clan.tag.replace("#", "")}`} className="flex flex-col text-xs md:text-lg">
+                        <p className="text-cyan-900">{clan.name}</p>
+                        </Link>
+                    </td>
+                    <td className=" px-4 py-2">
+                        <p className="flex items-center gap-2">
+                            <Image src={trophy} height="100" width="25" alt="Trophy image"/><span>{clan.clanScore}</span>
+                        </p>
+                    </td>
+                    <td className=" px-4 py-2">{clan.members}</td>
+                    <td className="max-[350px]:hidden px-4 py-2">{clan.location.name}</td>
+                </tr>
             ))}
-            <Link  href={`./${clan}/members/${clanId}`}>
-                Details page
-            </Link>
+            </tbody>
+        </table>
+        <div className="flex w-full justify-around">
+            {!isFirstPage ? <button className="p-4 bg-teal-300 my-4 text-sm rounded-xl font-semibold hover:bg-teal-500 w-[90px] hover:text-white" onClick={() => setCurrentPage(currentPage - 1)}>Previous</button> : ""}
+            {!isLastPage ? <button className="p-4 bg-teal-300 my-4 text-sm rounded-xl font-semibold hover:bg-teal-500 w-[90px] hover:text-white" onClick={() => setCurrentPage(currentPage + 1)}>
+                Next
+            </button> : ""}
+            </div>
         </div>
      );
 }
@@ -35,7 +82,7 @@ export default ClanResults;
 export async function getServerSideProps({ params }){
     const { clanName } = params
 
-    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImVlZmJmMjVmLWNkMmUtNDIxYy1iYzYxLTdkMGVkYWRkYjY4OCIsImlhdCI6MTY3NzAwOTg2NCwic3ViIjoiZGV2ZWxvcGVyL2M2ZDI1ODY1LWY3NjItNzUwNS04YTU3LTE1NTMyZjc2MmFmMCIsInNjb3BlcyI6WyJyb3lhbGUiXSwibGltaXRzIjpbeyJ0aWVyIjoiZGV2ZWxvcGVyL3NpbHZlciIsInR5cGUiOiJ0aHJvdHRsaW5nIn0seyJjaWRycyI6WyI3NS44Mi43OS41MCJdLCJ0eXBlIjoiY2xpZW50In1dfQ.-qfhLq8qtK9ArGyhYHdE3Xnpdz2YpYdiA49zuW_oomG7-123gMKo6Q1U64Ds1flQgL4zzemVkYW0cZ52G1bQ5g'
+    const token = `${process.env.CLASH_ROYALE_API}`
 
     const res = await fetch(`https://api.clashroyale.com/v1/clans?name=${clanName}`, {
         headers: {
@@ -46,7 +93,8 @@ export async function getServerSideProps({ params }){
 
     return {
         props: {
-          clanData: data      
+          clanData: data,
+          name: clanName      
         }
       }
 }
