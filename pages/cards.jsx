@@ -6,12 +6,13 @@ export async function getServerSideProps() {
     const token = process.env.CLASH_ROYALE_API;
 
     const clashApi = await fetch("https://api.clashroyale.com/v1/cards", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    const clash = await clashApi.json();
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+console.log(clashApi.status); // Output the HTTP status code
+const clash = await clashApi.json();
+console.log(clash);
 
     if (!clash || !clash.items) {
       throw new Error("No items found");
