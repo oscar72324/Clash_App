@@ -54,7 +54,7 @@ const Challenges = ({ challenges }) => {
  
 export default Challenges;
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
     const token = `${process.env.CLASH_ROYALE_API}`
 
     const res = await fetch("https://api.clashroyale.com/v1/challenges", {

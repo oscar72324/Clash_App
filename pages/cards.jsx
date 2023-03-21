@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
   const token = `${process.env.CLASH_ROYALE_API}`
 
   const clashApi = await fetch("https://api.clashroyale.com/v1/cards", {

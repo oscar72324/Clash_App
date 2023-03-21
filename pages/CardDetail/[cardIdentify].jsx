@@ -80,9 +80,6 @@ export async function getServerSideProps({ params }) {
     ])
 
 
-
-    console.log(clash)
-
     return {
       props: {
         cardData,

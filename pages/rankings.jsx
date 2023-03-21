@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Link from "next/link";
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
     const token = `${process.env.CLASH_ROYALE_API}`
     const res = await fetch("https://api.clashroyale.com/v1/locations/57000001/rankings/clans", {
       headers: {
