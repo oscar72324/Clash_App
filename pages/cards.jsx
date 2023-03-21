@@ -14,6 +14,7 @@ export default function Cards(props) {
         const clashApi = await fetch("https://api.clashroyale.com/v1/cards", {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
 
           },
         });
