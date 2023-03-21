@@ -4,7 +4,6 @@ const Challenges = ({ challenges }) => {
 
     const mappedChal = challenges.map(chal => chal.challenges)
     const test = mappedChal.map(chal => chal.map(id => id))
-    console.log(test)
     return ( 
     <div className="h-auto w-full">
         <div className="flex basis-1 items-center max-lg:flex-col lg:flex-wrap w-full h-full justify-around ">

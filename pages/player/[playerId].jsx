@@ -15,7 +15,6 @@ const PlayerDetail = (props) => {
     const player = router.query.playerId
 
     const clan = props.playerData.clan
-    console.log(props.playerData)
 
     return ( 
     <div className="h-auto w-full flex flex-col gap-y-28 overflow-hidden relative max-md:items-center">

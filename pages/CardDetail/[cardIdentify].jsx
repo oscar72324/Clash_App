@@ -16,7 +16,6 @@ const CardDetailPage = (props) => {
 
     const clashCard = props.clash.items.find(p => p.id == id)
     const image = clashCard.iconUrls.medium
-    console.log(clashCard)
     
     
     return ( 
