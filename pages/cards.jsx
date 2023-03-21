@@ -18,17 +18,16 @@ export async function getServerSideProps(){
       }
     }
   }
-
   export default function Cards(props) { 
-      return (
-        <div className="flex justify-center py-20">
-          <div className="flex flex-wrap gap-4 p-4 justify-center rounded-lg items-center text-center w-[1000px] bg-white ">
-          {props.clashCard.items.map(card => (
+    return (
+      <div className="flex justify-center py-20">
+        <div className="flex flex-wrap gap-4 p-4 justify-center rounded-lg items-center text-center w-[1000px] bg-white ">
+          {props.clashCard.items ? props.clashCard.items.map(card => (
             <Link key={card.id} className="flex flex-col h-[150px] font-bold" href={`./CardDetail/${card.id}?type=${card.iconUrls.medium}`}>
               {card.name} <Image className="p-0 h-4/5 w-[100px]" height="100" width="500" src={card.iconUrls.medium} alt="images of troops"/>
             </Link>
-          ))}
-          </div>
+          )) : null}
         </div>
-      )
-    }
+      </div>
+    )
+  }
