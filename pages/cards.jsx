@@ -3,13 +3,20 @@ import Link from "next/link";
 
 export async function getServerSideProps() {
   try {
-    const token = `${process.env.CLASH_ROYALE_API}`;
+    const token = process.env.CLASH_ROYALE_API;
+
     const clashApi = await fetch("https://api.clashroyale.com/v1/cards", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+
     const clash = await clashApi.json();
+
+    if (!clash || !clash.items) {
+      throw new Error("No items found");
+    }
+
     return {
       props: {
         clashCard: clash,
