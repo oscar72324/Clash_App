@@ -20,7 +20,7 @@ const CardDetailPage = (props) => {
     
     return ( 
       <div className="flex w-full h-[75vh] justify-center items-center">
-        <Image className="max-xl:right-[-10%] max-lg:top-[50%] max-md:hidden absolute top-[35%] right-[0%] w-[250px] lg:w-[500px]" src={background} height="100" width="1000"/>
+        <Image className="max-xl:right-[-10%] max-lg:top-[50%] max-md:hidden absolute top-[35%] right-[0%] w-[250px] lg:w-[500px]" src={background} height="100" width="1000" alt="image of card"/>
         <div className="w-full md:w-1/2 h-full flex flex-col justify-around items-center">
           <Image className="max-md:w-full w-1/2 " src={image} height="100" width="1000" alt="Picture of troop"/>
         </div>

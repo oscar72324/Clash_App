@@ -30,7 +30,7 @@ const ClanDetails = ({ clanData }) => {
             </thead>
             <tbody className="">
               {clanData.items.map((player) => (
-                <tr className=" hover:bg-gray-200 w-full border-gray-300 border-b-2  text-sm md:text-lg" key={player.name}> 
+                <tr className=" hover:bg-gray-200 w-full border-gray-300 border-b-2  text-sm md:text-lg" key={player.tag}> 
                   <td className=" px-4 py-2">{player.clanRank} </td>
                   <td className=" px-4 py-2">
                     <Link href={`/player/${player.tag.replace('#', '')}`} className="flex flex-col text-xs md:text-lg">

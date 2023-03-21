@@ -29,7 +29,7 @@ const SearchBar = (props) => {
                                 
                                 value={input} 
                                 className="text-sm md:text-lg font-bold border-none w-1/2 md:w-full p-4 grow focus:outline-none rounded-l-full overflow-hidden" 
-                            /><Link href={input != null ? `../player/${input}` : `../player/2UYU2GJ9`} >
+                            /><Link href={!input == null ? `../player/${input}` : `../player/2UYU2GJ9`} >
                             <button className="bg-green-300 rounded-full px-4 md:px-8 font-semibold text-sm h-full">
                                 Search
                             </button></Link>
@@ -41,7 +41,7 @@ const SearchBar = (props) => {
                                 
                                 value={input} 
                                 className="text-sm md:text-lg font-bold border-none md:w-[500px] p-4 grow focus:outline-none rounded-l-full overflow-hidden" 
-                            /> <Link href={!input != null ? `../clans/${input}` : `../clans/c.loe`} >
+                            /> <Link href={!input == null ? `../clans/${input}` : `../clans/c.loe`} >
                             <button className="bg-green-300 rounded-full px-4 md:px-8 font-semibold text-xs md:text-sm h-full">
                                Search
                             </button></Link>
