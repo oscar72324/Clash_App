@@ -1,4 +1,3 @@
-import { current } from "@reduxjs/toolkit";
 import Image from "next/image";
 
 const Deck = ({ playerData }) => {
