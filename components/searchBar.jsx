@@ -15,6 +15,7 @@ const SearchBar = (props) => {
     const formSubmit = e => {
         e.preventDefault()
     } 
+    console.log(process.env.CLASH_ROYALE_API)
     return ( 
     <div>
         <div className="h-[50vh] w-full flex flex-col gap-y-20 ">

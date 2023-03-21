@@ -2,23 +2,30 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Link from "next/link";
 
-export async function getServerSideProps(){
-    const token = `${process.env.CLASH_ROYALE_API}`
-    const res = await fetch("https://api.clashroyale.com/v1/locations/57000001/rankings/clans", {
-      headers: {
-        "Authorization": `Bearer ${token}`
-      }
-  });
-
-    const data = await res.json()
-
-
-    return{
-        props: {
-            rankings: data,
+export async function getServerSideProps() {
+    try {
+      const token = `${process.env.CLASH_ROYALE_API}`
+      const res = await fetch("https://api.clashroyale.com/v1/locations/57000001/rankings/clans", {
+        headers: {
+          "Authorization": `Bearer ${token}`
         }
+      });
+      const data = await res.json()
+  
+      return {
+        props: {
+          rankings: data,
+        }
+      }
+    } catch (error) {
+      console.error(error)
+      return {
+        props: {
+          rankings: null, // or any other default value you want to use
+        },
+      }
     }
-}
+  }
 
 const Rankings = ({ rankings }) => {
     const [currentPage, setCurrentPage] = useState(0)
