@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 export async function getServerSideProps() {
+  console.log("getServerSideProps called"); // Add a log message here
+
   try {
     const token = process.env.CLASH_ROYALE_API;
 
